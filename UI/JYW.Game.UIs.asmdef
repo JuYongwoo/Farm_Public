@@ -1,0 +1,8 @@
+{
+	"name": "JYW.Game.UIs",
+	"references": [
+		"JYW.Game.Utils",
+		"JYW.Game.Commons",
+		"JYW.Game.Managers"
+  ]
+}

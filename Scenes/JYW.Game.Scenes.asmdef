@@ -1,0 +1,9 @@
+{
+	"name": "JYW.Game.Scenes",
+	"references": [
+		"JYW.Game.Utils",
+		"JYW.Game.Managers",
+		"JYW.Game.SOs",
+		"JYW.Game.Commons"
+	]
+}

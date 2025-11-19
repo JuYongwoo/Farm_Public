@@ -1,0 +1,7 @@
+{
+	"name": "JYW.Game.Utils",
+	"references": [
+		"Unity.Addressables",
+		"Unity.ResourceManager"
+  ]
+}

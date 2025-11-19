@@ -1,0 +1,7 @@
+{
+	"name": "JYW.Game.Enemies",
+	"references": [
+		"JYW.Game.Players"
+
+  ]
+}

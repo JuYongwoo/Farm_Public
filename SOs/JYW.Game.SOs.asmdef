@@ -1,0 +1,6 @@
+{
+	"name": "JYW.Game.SOs",
+	"references": [
+		"JYW.Game.Commons"
+  ]
+}

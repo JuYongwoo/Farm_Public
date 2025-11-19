@@ -1,0 +1,10 @@
+{
+	"name": "JYW.Game.Items",
+	"references": [
+		"JYW.Game.Commons",
+		"JYW.Game.SOs",
+		"JYW.Game.Utils",
+		"JYW.Game.Managers",
+		"JYW.Game.Players"
+	]
+}
