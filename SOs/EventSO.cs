@@ -22,7 +22,7 @@ namespace JYW.Game.SOs
 
         [SerializeField] private bool isSoftSpeech;
 
-        [SerializeField] private List<string> softSpeechTexts = new List<string>();
+        [SerializeField] private List<SpeechData> softSpeechTexts = new List<SpeechData>();
 
         [SerializeField] private bool isHardSpeech;
 
@@ -68,7 +68,7 @@ namespace JYW.Game.SOs
 
         [SerializeField] private bool isSound;
 
-        [SerializeField] private SoundData sound;
+        [SerializeField] private SoundData[] sounds = new SoundData[0];
 
         [SerializeField] private bool isSave;
 
@@ -95,7 +95,8 @@ namespace JYW.Game.SOs
         public bool IsUIOpen => isUIOpen;
         public GameObject UIObject => uiObject;
         public bool IsSoftSpeech => isSoftSpeech;
-        public IReadOnlyList<string> SoftSpeechTexts => softSpeechTexts;
+        // 변경: 시간 기반 SoftSpeech 접근자
+        public IReadOnlyList<SpeechData> SoftSpeechTexts => softSpeechTexts;
         public bool IsHardSpeech => isHardSpeech;
         public IReadOnlyList<string> HardSpeechTexts => hardSpeechTexts;
         public KeyCode HardSpeechKey => hardSpeechKey;
@@ -118,7 +119,7 @@ namespace JYW.Game.SOs
         public bool IsSceneChange => isSceneChange;
         public Scenes EventSceneChange => eventscenechange;
         public bool IsSound => isSound;
-        public SoundData Sound => sound;
+        public SoundData[] Sounds => sounds;
         public bool IsSave => isSave;
         public int Save => save;
         public bool IsFade => isFade;

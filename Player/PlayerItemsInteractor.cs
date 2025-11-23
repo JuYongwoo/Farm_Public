@@ -8,6 +8,7 @@ namespace JYW.Game.Players
 {
     public class PlayerItemsInteractor : MonoBehaviour
     {
+        [HideInInspector]
         public PlayerInventory playerInventory;
 
         // 공용 힌트/조작 UI
