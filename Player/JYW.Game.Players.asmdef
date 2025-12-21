@@ -3,7 +3,8 @@
 	"references": [
 		"JYW.Game.Utils",
 		"JYW.Game.Commons",
-		"JYW.Game.Managers",
-		"JYW.Game.SOs"
+		"JYW.Framework",
+		"JYW.Game.SOs",
+		"JYW.Game.Enemies"
   ]
 }

@@ -3,6 +3,7 @@
 	"references": [
 		"JYW.Game.Utils",
 		"JYW.Game.Commons",
-		"JYW.Game.Managers"
+		"JYW.Framework",
+		"JYW.Game.SOs"
   ]
 }

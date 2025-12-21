@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace JYW.Game.Managers
+namespace JYW.Game.Scenes
 {
     public class TitleScene : MonoBehaviour
     {
@@ -10,11 +10,5 @@ namespace JYW.Game.Managers
             Cursor.visible = true;
 
         }
-
-        private void Start()
-        {
-
-        }
-
     }
 }

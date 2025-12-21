@@ -1,7 +1,8 @@
 {
 	"name": "JYW.Game.Enemies",
 	"references": [
-		"JYW.Game.Players"
+		"JYW.Framework",
+		"JYW.Game.Commons"
 
   ]
 }

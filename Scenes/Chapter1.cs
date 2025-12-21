@@ -1,22 +1,30 @@
-using JYW.Game.SOs;
-using JYW.Game.Managers.TriggerSystem;
+using JYW.Game.EventPlay;
 using UnityEngine;
 
-namespace JYW.Game.Managers
+namespace JYW.Game.Scenes
 {
     public class Chapter1 : MonoBehaviour
     {
         [SerializeField]
-        private EventSO eventSO;
+        private EventSO startEventSO;
 
-        private void Awake()
+        [SerializeField]
+        private Canvas escCanvas;
+
+        private void Start()
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            EventPlayManager.Instance.PlayEvent(startEventSO, gameObject);
+            escCanvas.gameObject.SetActive(false);
         }
-        private void Start()
+
+        private void Update()
         {
-            EventPlayManager.Instance.PlayEvent(eventSO);
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                escCanvas.gameObject.SetActive(true);
+            }
         }
     }
 }

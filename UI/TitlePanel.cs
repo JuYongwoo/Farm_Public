@@ -1,4 +1,4 @@
-using JYW.Game.Managers;
+using JYW.Game.EventPlay;
 using JYW.Game.Utils;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,13 +15,14 @@ namespace JYW.Game.UIs
         {
             StartButton,
             SettingsButton,
-            GameExitButton
+            GameExitButton,
+            DeleteButton
         }
 
         private Dictionary<TitlePanelObjsEnum, GameObject> titleUIObjsMap;
 
 
-        private void Awake()
+        private void Start()
         {
             titleUIObjsMap = Util.MapEnumChildObjects<TitlePanelObjsEnum, GameObject>(this.gameObject);
             titleUIObjsMap[TitlePanelObjsEnum.StartButton].GetComponent<Button>().onClick.AddListener(() =>
@@ -30,11 +31,15 @@ namespace JYW.Game.UIs
             });
             titleUIObjsMap[TitlePanelObjsEnum.SettingsButton].GetComponent<Button>().onClick.AddListener(() =>
             {
-                EventHub.Instance.OnSettingsPanelOn();
+                EventPlayManager.Instance.PlayAction("SettingsPanel");
             });
             titleUIObjsMap[TitlePanelObjsEnum.GameExitButton].GetComponent<Button>().onClick.AddListener(() =>
             {
                 Application.Quit();
+            });
+            titleUIObjsMap[TitlePanelObjsEnum.DeleteButton].GetComponent<Button>().onClick.AddListener(() =>
+            {
+                PlayerPrefs.DeleteAll();
             });
 
             foreach (var trs in titleUIObjsMap)

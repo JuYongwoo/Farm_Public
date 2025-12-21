@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 public class InventoryUIScroll : MonoBehaviour
 {
@@ -12,7 +11,7 @@ public class InventoryUIScroll : MonoBehaviour
 
     private RectTransform viewportRT;
 
-    private void Awake()
+    private void Start()
     {
         if (scrollRect == null)
             scrollRect = GetComponentInChildren<ScrollRect>(true);

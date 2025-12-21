@@ -2,8 +2,10 @@
 	"name": "JYW.Game.Scenes",
 	"references": [
 		"JYW.Game.Utils",
-		"JYW.Game.Managers",
+		"JYW.Framework",
 		"JYW.Game.SOs",
-		"JYW.Game.Commons"
+		"JYW.Game.Commons",
+		"JYW.Game.Items",
+		"JYW.Game.UIs"
 	]
 }

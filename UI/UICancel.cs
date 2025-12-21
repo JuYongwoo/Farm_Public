@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class UICancel : MonoBehaviour
 {
+    public KeyCode cancelKey;
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(cancelKey))
         {
             gameObject.SetActive(false);
         }

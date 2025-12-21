@@ -1,5 +1,4 @@
-using JYW.Game.SOs;
-using JYW.Game.Managers.TriggerSystem;
+using JYW.Game.EventPlay;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,15 +7,21 @@ namespace JYW.Game.Players
 {
     public class PlayerInventory : MonoBehaviour
     {
-        [SerializeField] private EventSO inventoryOpenSO;
+        [SerializeField] private GameObject inventoryUIPrefab;
         [SerializeField] private GameObject itemUIPrefab;
         private List<GameObject> collectedObjects = new List<GameObject>();
 
-        public bool CheckExist(string name)
+        // 인스턴스 참조 추가
+        private GameObject inventoryUIInstance;
+
+
+        public bool CheckExist(string name, int count)
         {
+            int foundCount = 0;
             foreach (var obj in collectedObjects)
             {
-                if (obj.name == name) return true;
+                if (obj.name == name) foundCount++;
+                if (foundCount >= count) return true;
             }
             return false;
         }
@@ -30,29 +35,34 @@ namespace JYW.Game.Players
         {
             if (Input.GetKeyDown(KeyCode.Tab))
             {
-                EventPlayManager.Instance.PlayEvent(inventoryOpenSO);
+                if (inventoryUIPrefab == null)
+                {
+                    Debug.LogWarning("[PlayerInventory] inventoryUIPrefab이 할당되어 있지 않습니다.");
+                    return;
+                }
+
+                // 인스턴스가 없으면 생성
+                if (inventoryUIInstance == null)
+                {
+                    inventoryUIInstance = Instantiate(inventoryUIPrefab);
+                    inventoryUIInstance.name = inventoryUIPrefab.name;
+                }
+                inventoryUIInstance.SetActive(true);
+
                 RefreshInventoryContents();
+
             }
         }
 
         private void RefreshInventoryContents()
         {
-            // spawnedObjects 안에서 실제 인스턴스화된 인벤토리 UI 객체 찾기
-            GameObject inventoryUIInstance = null;
-
-            foreach (GameObject obj in EventPlayManager.Instance.spawnedObjects)
+            if (inventoryUIInstance == null)
             {
-                if (obj != null && obj.name == inventoryOpenSO.UIObject.name)
-                {
-                    inventoryUIInstance = obj;
-                    break;
-                }
+                Debug.LogWarning("[PlayerInventory] inventoryUIInstance가 없습니다. 먼저 열어주세요.");
+                return;
             }
 
-            if (inventoryUIInstance == null)
-                return; // UI가 아직 생성되기 전이라면 그냥 무시
-
-            // GridLayout 찾기
+            // GridLayout 찾기 (인스턴스에서 검색)
             GridLayoutGroup grid = inventoryUIInstance.GetComponentInChildren<GridLayoutGroup>(true);
 
             if (grid == null)
@@ -74,7 +84,8 @@ namespace JYW.Game.Players
                 itemUI.name = itemObj.name;
 
                 Text t = itemUI.GetComponentInChildren<Text>();
-                t.text = itemObj.name;
+                if (t != null)
+                    t.text = itemObj.name;
             }
         }
 
@@ -88,6 +99,10 @@ namespace JYW.Game.Players
             if (obj != null)
             {
                 collectedObjects.Add(obj);
+
+                // UI가 열려있으면 즉시 갱신
+                if (inventoryUIInstance != null && inventoryUIInstance.activeSelf)
+                    RefreshInventoryContents();
             }
         }
     }
